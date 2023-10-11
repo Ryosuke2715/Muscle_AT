@@ -1,0 +1,2 @@
+class TrainingFav < ApplicationRecord
+end
