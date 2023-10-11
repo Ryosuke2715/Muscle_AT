@@ -1,0 +1,2 @@
+class MealFav < ApplicationRecord
+end

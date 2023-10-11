@@ -1,0 +1,2 @@
+class FreeEntry < ApplicationRecord
+end
