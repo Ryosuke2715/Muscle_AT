@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <footer class="bg-dark text-light text-center py-3">
+    <p>&copy; 2023 Muscle_AT. All rights reserved.</p>
+    <div class="col-md-4 text-center">
+      <% if admin_signed_in? %>
+        <%= link_to 'Admin log out here', destroy_admin_session_path, method: :delete, class: "footer-link", style: "color: #FFF5E4;" %>
+      <% else %>
+        <%= link_to 'Admin Log in here', new_admin_session_path, class: "footer-link", style: "color: #FFF5E4;" %>
+      <% end %>
+    </div>
+  </footer>
+</div>
