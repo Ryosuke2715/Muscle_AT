@@ -10,9 +10,9 @@
     </div>
     <div class="col-md-6">
       <div class="section1 text-right">
-        <%= link_to "食事投稿", new_meal_post_path, class: "btn btn-primary btn-sm" %>
+        <%= link_to "トレーニング投稿", new_training_post_path, class: "btn btn-primary btn-sm" %>
       </div>
-      <%= form_with(model: @training_post, local: true) do |form| %>
+      <%= form_with(model: @meal_post, local: true) do |form| %>
         <div class="form-group row">
           <div class="col-md-3">
             <%= form.label :date %>
@@ -28,7 +28,7 @@
           <%= form.text_area :content, class: "form-control" %>
         </div>
         <div class="actions">
-          <%= form.submit "Create Training Post", class: "btn btn-primary" %>
+          <%= form.submit "Create Meal Post", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

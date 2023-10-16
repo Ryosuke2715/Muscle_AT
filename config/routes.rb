@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get "customers/mypage" => "customers#show"
     resources :customers
     resources :training_posts
+    resources :meal_posts
   end
 
   namespace :public do
