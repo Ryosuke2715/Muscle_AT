@@ -1,0 +1,17 @@
+<div class="container" style="margin-top: 130px; margin-bottom: 173px;">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
+    </div>
+    <div class="col-md-3">
+      <!-- SideBar -->
+      <%= render 'public/shared/customer_profile', user: current_customer %>
+    </div>
+    <div class="col-md-8">
+      <h1><%= @training_post.title %></h1>
+      <p>トレーニング日: <%= @training_post.date.strftime("%Y年%m月%d日") %></p>
+      <p><%= @training_post.content %></p>
+    </div>
+  </div>
+</div>

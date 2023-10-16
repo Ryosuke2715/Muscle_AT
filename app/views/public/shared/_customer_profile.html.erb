@@ -1,0 +1,15 @@
+<div class="user-profile">
+  <div class="user-avatar">
+    <%#= image_tag user.avatar.url, alt: user.name, class: "avatar" %>
+  </div>
+  <div class="user-info">
+    <h2><%= user.name %></h2>
+    <p>自己紹介</p>
+    <p><%= user.profile_message %></p>
+  </div>
+  <div class="user-actions">
+    <% if user.id = current_customer.id %>
+      <%= link_to "Edit Profile", edit_customer_path(user), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

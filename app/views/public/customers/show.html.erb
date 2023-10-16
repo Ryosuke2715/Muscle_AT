@@ -1,0 +1,26 @@
+<div class="text-center" style="margin-top: 70px; margin-bottom: 70px;">
+  <div class="container">
+    <%= render 'public/shared/controll' %>
+    <div class="row">
+      <div class="col-md-3">
+        <!-- SideBar -->
+        <%= render 'public/shared/customer_profile', user: current_customer %>
+      </div>
+      <div class="col-md-9">
+        <h1>マイページ</h1>
+        <h2>トレーニング投稿一覧</h2>
+        <ul>
+          <% if @training_posts %>
+            <% @training_posts.each do |training_post| %>
+              <li>
+                <%= link_to training_post.title, training_post %>
+              </li>
+            <% end %>
+          <% else %>
+            <p>トレーニング投稿はありません。</p>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

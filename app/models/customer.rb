@@ -1,7 +1,11 @@
 class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :training_posts, foreign_key: "customer_id"
   has_one_attached :image
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
 
 
 GUEST_CUSTOMER_EMAIL = "guest@example.com"
