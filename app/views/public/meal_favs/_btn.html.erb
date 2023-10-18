@@ -1,0 +1,11 @@
+<% if meal_post.favorited_by?(current_customer) %>
+  <%= link_to meal_post_meal_fav_path(meal_post), method: :delete do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= meal_post.meal_fav.count %> いいね
+  <% end %>
+<% else %>
+  <%= link_to meal_post_meal_fav_path(meal_post), method: :post do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+    <%= meal_post.meal_fav.count %> いいね
+  <% end %>
+<% end %>

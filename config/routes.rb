@@ -26,8 +26,16 @@ Rails.application.routes.draw do
 
     get "customers/mypage" => "customers#show"
     resources :customers
-    resources :training_posts
-    resources :meal_posts
+    resources :training_posts do
+      resource :training_fav, only: [:create, :destroy]
+      resources :training_comments, only: [:create, :destroy]
+    end
+    get "training_fav" => "training_favs#index"
+    resources :meal_posts do
+      resource :meal_fav, only: [:create, :destroy]
+      resources :meal_comments, only: [:create, :destroy]
+    end
+    get "meal_fav" => "meal_favs#index"
   end
 
   namespace :public do
@@ -44,11 +52,11 @@ Rails.application.routes.draw do
     resources :training_posts
     resources :meal_posts
   end
-  
+
   namespace :admin do
     root 'customers#index'
-    resources :customers # 例: 管理者向けの顧客リソース
-    resources :training_posts # 例: 管理者向けのトレーニング投稿リソース
-    resources :meal_posts # 例: 管理者向けの食事投稿リソース
+    resources :customers
+    resources :training_posts
+    resources :meal_posts
   end
 end
