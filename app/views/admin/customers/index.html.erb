@@ -1,0 +1,11 @@
+<div class="container" style="margin-top: 130px; margin-bottom: 30px;">
+  <%= render 'admin/shared/controll' %>
+  <h1 class="display-9 mb-4">会員一覧</h1>
+  <ul>
+    <% @customers.each do |customer| %>
+      <li>
+        <%= link_to customer.name, admin_customer_path(customer) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
