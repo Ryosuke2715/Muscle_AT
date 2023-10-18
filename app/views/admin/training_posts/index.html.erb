@@ -2,8 +2,8 @@
   <%= render 'admin/shared/controll' %>
   <h1 class="display-9 mb-4">トレーニング投稿一覧</h1>
   <div class="section1 text-right">
-        <%= link_to "食事投稿一覧", admin_meal_posts_path, class: "btn btn-primary btn-sm" %>
-      </div>
+    <%= link_to "食事投稿一覧", admin_meal_posts_path, class: "btn btn-primary btn-sm" %>
+  </div>
   <ul class="list-group">
     <% @training_posts.each do |training_post| %>
       <li class="list-group-item">
