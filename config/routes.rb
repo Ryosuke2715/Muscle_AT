@@ -40,7 +40,15 @@ Rails.application.routes.draw do
 
   # admin routes
   scope module: :admin do
-    get "admin/training_post/index"
     resources :customers
+    resources :training_posts
+    resources :meal_posts
+  end
+  
+  namespace :admin do
+    root 'customers#index'
+    resources :customers # 例: 管理者向けの顧客リソース
+    resources :training_posts # 例: 管理者向けのトレーニング投稿リソース
+    resources :meal_posts # 例: 管理者向けの食事投稿リソース
   end
 end
