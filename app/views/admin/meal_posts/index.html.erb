@@ -11,7 +11,8 @@
           <h5 class="mb-1"><strong><%= meal_post.customer.name %></strong></h5>
           <small>(<%= meal_post.date.strftime("%Y-%m-%d") %>)</small>
         </div>
-        <p class="mb-1"><%= link_to meal_post.title, admin_meal_post_path(meal_post) %></p>
+        <td class="mb-1"><%= link_to meal_post.title, admin_meal_post_path(meal_post) %></td>
+        <td>コメント数： <%= meal_post.meal_comments.count %></td>
       </li>
     <% end %>
   </ul>

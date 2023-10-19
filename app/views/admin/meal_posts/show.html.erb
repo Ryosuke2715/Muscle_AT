@@ -4,7 +4,17 @@
   <p><strong>Date:</strong> <%= @meal_post.date.strftime("%Y-%m-%d") %></p>
   <p><strong>Content:</strong></p>
   <p><%= @meal_post.content %></p>
-  
+
   <%= link_to 'Back', admin_meal_posts_path %> <!-- 一覧ページへのリンク -->
-  <%= link_to 'Delete', admin_meal_post_path(@meal_post), method: :delete, data: { confirm: 'Are you sure?' } %> <!-- 削除リンク -->
+  <%= link_to 'Delete', admin_meal_post_path(@meal_post), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+  <h2>Comments</h2>
+  コメント数：<%= @meal_post.meal_comments.count %>
+  <% @meal_post.meal_comments.each do |mc| %>
+    <div>
+      <%= mc.customer.name %>
+      <%= mc.comment_content %>
+      <%= link_to "Delete", admin_meal_post_meal_comment_path(@meal_post, mc), method: :delete %>
+    </div>
+  <% end %>
 </div>

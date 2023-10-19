@@ -11,7 +11,8 @@
           <h5 class="mb-1"><strong><%= training_post.customer.name %></strong></h5>
           <small>(<%= training_post.date.strftime("%Y-%m-%d") %>)</small>
         </div>
-        <p class="mb-1"><%= link_to training_post.title, admin_training_post_path(training_post) %></p>
+        <td class="mb-1"><%= link_to training_post.title, admin_training_post_path(training_post) %></td>
+        <td>コメント数： <%= training_post.training_comments.count %></td>
       </li>
     <% end %>
   </ul>
