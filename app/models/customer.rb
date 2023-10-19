@@ -2,6 +2,7 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :training_posts, foreign_key: "customer_id"
+  has_many :meal_posts, foreign_key: "customer_id"
   has_many :training_fav, dependent: :destroy
   has_many :meal_fav, dependent: :destroy
 

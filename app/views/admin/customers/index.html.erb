@@ -1,10 +1,11 @@
 <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
   <%= render 'admin/shared/controll' %>
   <h1 class="display-9 mb-4">会員一覧</h1>
-  <ul>
+  <ul class="list-group">
     <% @customers.each do |customer| %>
       <li>
-        <%= link_to customer.name, admin_customer_path(customer) %>
+        <td>会員ID:<%= customer.id %></td>
+        <td><%= link_to customer.name, admin_customer_path(customer) %></td>
       </li>
     <% end %>
   </ul>

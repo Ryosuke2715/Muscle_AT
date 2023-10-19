@@ -56,7 +56,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'customers#index'
     resources :customers
-    resources :training_posts
-    resources :meal_posts
+    resources :training_posts do
+      resources :training_comments, only: [:destroy]
+    end
+    resources :meal_posts do
+      resources :meal_comments, only: [:destroy]
+    end
   end
 end
