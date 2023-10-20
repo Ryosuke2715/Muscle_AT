@@ -1,6 +1,7 @@
 class Public::MealPostsController < ApplicationController
   def index
     @meal_post_all = MealPost.all
+    @customer = current_customer
   end
 
   def new
@@ -20,6 +21,7 @@ class Public::MealPostsController < ApplicationController
 
   def show
     @meal_post = MealPost.find(params[:id])
+    @customer = @meal_post.customer
   end
 
   def edit

@@ -1,23 +1,21 @@
 class Public::TrainingPostsController < ApplicationController
   before_action :authenticate_customer!, except: [:index, :show]
 
-  # トレーニング投稿一覧ページ
   def index
     @training_posts = current_customer.training_posts
     @training_post_all = TrainingPost.all
+    @customer = current_customer
   end
 
-  # トレーニング投稿詳細ページ
   def show
     @training_post = TrainingPost.find(params[:id])
+    @customer = @training_post.customer
   end
 
-  # トレーニング投稿作成ページ
   def new
     @training_post = TrainingPost.new
   end
 
-  # トレーニング投稿作成処理
   def create
     @training_post = TrainingPost.new(training_post_params)
     @training_post.customer = current_customer
@@ -29,7 +27,6 @@ class Public::TrainingPostsController < ApplicationController
     end
   end
 
-  # 他のアクション（編集、更新、削除など）も追加できます
   def user_posts
     @customer = current_customer
     @training_posts = @customer.training_posts

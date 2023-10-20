@@ -2,13 +2,11 @@
   <div class="row justify-content-center">
     <div class="col-md-3">
       <!-- SideBar -->
-      <%= render 'public/shared/customer_profile', user: current_customer %>
+      <%= render 'public/shared/customer_profile', customer: @customer %>
     </div>
     <div class="col-md-9">
-      <div class="col-md-12">
-        <!-- Control links -->
-        <%= render 'public/shared/controll' %>
-      </div>
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
       <h1><%= @meal_post.title %></h1>
       <p>食事日: <%= @meal_post.date.strftime("%Y年%m月%d日") %></p>
       <p><%= @meal_post.content %></p>

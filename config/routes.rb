@@ -23,19 +23,24 @@ Rails.application.routes.draw do
   get "about" => "homes#about"
   # Public routes
   scope module: :public do
-
-    get "customers/mypage" => "customers#show"
-    resources :customers
+    resources :customers do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end
+    
     resources :training_posts do
       resource :training_fav, only: [:create, :destroy]
       resources :training_comments, only: [:create, :destroy]
     end
     get "training_fav" => "training_favs#index"
+    
     resources :meal_posts do
       resource :meal_fav, only: [:create, :destroy]
       resources :meal_comments, only: [:create, :destroy]
     end
     get "meal_fav" => "meal_favs#index"
+    
   end
 
   namespace :public do
