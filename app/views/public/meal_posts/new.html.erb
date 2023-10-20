@@ -1,16 +1,15 @@
-<div class="container" style="margin-top: 100px; margin-bottom: 173px;">
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
   <div class="row justify-content-center">
-    <div class="col-md-12">
-      <!-- Control links -->
-      <%= render 'public/shared/controll' %>
-    </div>
     <div class="col-md-3">
       <!-- SideBar -->
-      <%= render 'public/shared/customer_profile', user: current_customer %>
+      <%= render 'public/shared/customer_profile', customer: current_customer %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-9">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
+      <h2>食事投稿</h2>
       <div class="section1 text-right">
-        <%= link_to "トレーニング投稿", new_training_post_path, class: "btn btn-primary btn-sm" %>
+        <%= link_to "トレーニング投稿へ移動", new_training_post_path, class: "btn btn-primary btn-sm" %>
       </div>
       <%= form_with(model: @meal_post, local: true) do |form| %>
         <div class="form-group row">
@@ -28,7 +27,7 @@
           <%= form.text_area :content, class: "form-control" %>
         </div>
         <div class="actions">
-          <%= form.submit "Create Meal Post", class: "btn btn-primary" %>
+          <%= form.submit "投稿", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

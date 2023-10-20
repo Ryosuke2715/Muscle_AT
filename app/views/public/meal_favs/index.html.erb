@@ -1,12 +1,21 @@
-<div class="container" style="margin-top: 130px; margin-bottom: 30px;">
-  <h1 class="display-9 mb-4">食事投稿のいいね一覧</h1>
-  <div class="section1 text-right">
-    <%= link_to "トレーニング投稿のいいね一覧", training_fav_path, class: "btn btn-primary btn-sm" %>
-  </div>
-  <% @meal_fav.each do |fav| %>
-    <div class="mb-3">
-      <strong><%= link_to fav.meal_post.title, meal_post_path(fav.meal_post) %></strong>
-      <p><%= fav.meal_post.content %></p>
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <!-- SideBar -->
+      <%= render 'public/shared/customer_profile', customer: current_customer %>
     </div>
-  <% end %>
+    <div class="col-md-9">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>  <h1 class="display-9 mb-4">食事投稿のいいね一覧</h1>
+      <div class="section1 text-right">
+        <%= link_to "トレーニング投稿のいいね一覧", training_fav_path, class: "btn btn-primary btn-sm" %>
+      </div>
+      <% @meal_fav.each do |fav| %>
+        <div class="mb-3">
+          <strong><%= link_to fav.meal_post.title, meal_post_path(fav.meal_post) %></strong>
+          <p><%= fav.meal_post.content %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

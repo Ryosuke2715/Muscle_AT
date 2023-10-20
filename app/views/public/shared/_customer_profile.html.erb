@@ -1,15 +1,26 @@
-<div class="user-profile">
-  <div class="user-avatar">
+<div class="customer-profile">
+  <div class="customer-avatar">
     <%#= image_tag user.avatar.url, alt: user.name, class: "avatar" %>
   </div>
-  <div class="user-info">
-    <h2><%= user.name %></h2>
+  <div class="customer-info">
+    <h2><%= customer.name %></h2>
     <p>自己紹介</p>
-    <p><%= user.profile_message %></p>
+    <p><%= customer.profile_message %></p>
+    <%= link_to "フォロー:#{customer.followings.count}", customer_followings_path(customer) %>
+    <%= link_to "フォロワー:#{customer.followers.count}", customer_followers_path(customer) %>
   </div>
-  <div class="user-actions">
-    <% if user.id = current_customer.id %>
-      <%= link_to "Edit Profile", edit_customer_path(user), class: "btn btn-primary" %>
+
+  <div class="customer-actions">
+    <% if customer.id != current_customer.id %>
+      <% if current_customer.following?(customer) %>
+        <%= link_to "フォロー解除", customer_relationships_path(customer), method: :delete, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to "フォローする", customer_relationships_path(customer), method: :post, class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+
+    <% if customer.id == current_customer.id %>
+      <%= link_to "プロフィール編集", edit_customer_path(customer), class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
