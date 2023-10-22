@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :projects
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customer,skip: [:passwords] ,controllers: {
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+    get "search" => "searchs#result"
     resources :training_posts do
       collection do
         get 'user_posts' # ユーザーの投稿一覧表示用のルート
@@ -55,11 +57,13 @@ Rails.application.routes.draw do
   scope module: :admin do
     resources :customers
     resources :training_posts
+    resources :training_tags
     resources :meal_posts
   end
 
   namespace :admin do
     root 'customers#index'
+    get "search" => "searchs#result"
     resources :customers
     resources :training_posts do
       resources :training_comments, only: [:destroy]

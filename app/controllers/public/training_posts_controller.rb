@@ -13,6 +13,7 @@ class Public::TrainingPostsController < ApplicationController
   end
 
   def new
+    @training_tags = TrainingTag.all
     @training_post = TrainingPost.new
   end
 

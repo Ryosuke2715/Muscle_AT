@@ -22,6 +22,36 @@
             <%= form.text_field :title, class: "form-control" %>
           </div>
         </div>
+          <div class="form-inline">
+            <div class="form_group">
+                <%= form.collection_select(:training_tag_id,@training_tags,:id, :training_tag) %>
+            </div>
+            <!-- 重量（kg）入力フォーム -->
+            <div class="form-group">
+              <input type="text" class="form-control-sm" id="kg" name="kg">
+              <label for="kg">kg</label>
+            </div>
+
+            <!-- レップ入力フォーム -->
+            <div class="form-group">
+              <input type="text" class="form-control-sm" id="rep" name="rep">
+              <label for="reps">ﾚｯﾌﾟ</label>
+            </div>
+
+            <!-- セット数入力フォーム -->
+            <div class="form-group">
+              <input type="text" class="form-control-sm" id="set" name="set">
+              <label for="set">ｾｯﾄ</label>
+            </div>
+          </div>
+          <div id='tasks'>
+            <%= form.fields_for :training_tags do |training_tag| %>
+             <%= render 'training_tag_fields', :f => training_tag %>
+            <% end %>
+            <div class='links'>
+              <%= link_to_add_association 'add training_tag', form, :training_tags %>
+            </div>
+          </div>
         <div class="form-group">
           <%= form.label :content %>
           <%= form.text_area :content, class: "form-control" %>

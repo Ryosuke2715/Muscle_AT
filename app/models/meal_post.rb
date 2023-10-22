@@ -14,4 +14,13 @@ class MealPost < ApplicationRecord
   validates :date, presence: true
 
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "content"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["customer", "meal_comments", "meal_fav"]
+  end
+
+
 end
