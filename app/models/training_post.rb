@@ -5,7 +5,7 @@ class TrainingPost < ApplicationRecord
   has_many :training_comments, dependent: :destroy
   has_many :training_menus, dependent: :destroy
   has_many :training_tags, through: :training_menus
-  accepts_nested_attributes_for :training_tags, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :training_menus, reject_if: :all_blank, allow_destroy: true
 
   def favorited_by?(customer)
    training_fav.exists?(customer_id: customer.id)
