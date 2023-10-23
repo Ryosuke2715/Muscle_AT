@@ -1,0 +1,27 @@
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <!-- SideBar -->
+      <%= render 'public/shared/customer_profile', customer: @customer %>
+    </div>
+    <div class="col-md-9">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
+      <div class="col-md-9">
+        <h1 class="text-center">マイページ</h1>
+        <h2 class="text-center">トレーニング投稿一覧</h2>
+        <ul>
+          <% if @training_posts.any? %>
+            <% @training_posts.each do |training_post| %>
+              <li class="list-group-item">
+                <%= link_to training_post.title, public_training_post_path(training_post) %>
+              </li>
+            <% end %>
+          <% else %>
+            <p>トレーニング投稿はありません。</p>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

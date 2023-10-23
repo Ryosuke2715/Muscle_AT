@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <!-- SideBar -->
+      <%= render 'public/shared/customer_profile', customer: current_customer %>
+    </div>
+    <div class="col-md-9">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
+      <h1 class="text-center">フォロワー一覧</h1>
+
+      <ul class="list-group">
+        <% @followers.each do |follower| %>
+          <li class="list-group-item">
+            <%= link_to follower.name, follower %>
+            フォロー数: <%= follower.followings.count %>
+            フォロワー数: <%= follower.followers.count %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

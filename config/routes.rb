@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  
-  get '/' => 'homes#top'
+
+
+  resources :projects
   # 顧客用
   # URL /customers/sign_in ...
-  devise_for :customers,skip: [:passwords] ,controllers: {
+  devise_for :customer,skip: [:passwords] ,controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
-  devise_scope :end_user do
-    post 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
-  end
 
+  # ゲストユーザー
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   # 管理者用
   # URL /admin/sign_in ...
@@ -19,4 +20,56 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  root to: "homes#top"
+  get "about" => "homes#about"
+  # Public routes
+  scope module: :public do
+    resources :customers do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end
+    
+    resources :training_posts do
+      resource :training_fav, only: [:create, :destroy]
+      resources :training_comments, only: [:create, :destroy]
+    end
+    get "training_fav" => "training_favs#index"
+    
+    resources :meal_posts do
+      resource :meal_fav, only: [:create, :destroy]
+      resources :meal_comments, only: [:create, :destroy]
+    end
+    get "meal_fav" => "meal_favs#index"
+    
+  end
+
+  namespace :public do
+    get "search" => "searchs#result"
+    resources :training_posts do
+      collection do
+        get 'user_posts' # ユーザーの投稿一覧表示用のルート
+      end
+    end
+  end
+
+  # admin routes
+  scope module: :admin do
+    resources :customers
+    resources :training_posts
+    resources :training_tags
+    resources :meal_posts
+  end
+
+  namespace :admin do
+    root 'customers#index'
+    get "search" => "searchs#result"
+    resources :customers
+    resources :training_posts do
+      resources :training_comments, only: [:destroy]
+    end
+    resources :meal_posts do
+      resources :meal_comments, only: [:destroy]
+    end
+  end
 end

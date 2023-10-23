@@ -1,0 +1,42 @@
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <!-- SideBar -->
+      <%= render 'public/shared/customer_profile', customer: @customer %>
+    </div>
+    <div class="col-md-9">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
+      <h1><%= @meal_post.title %></h1>
+      <p>食事日: <%= @meal_post.date.strftime("%Y年%m月%d日") %></p>
+      <p><%= @meal_post.content %></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="offset-0 offset-md-3">
+        <h2 class="mt-4">コメント一覧</h2>  コメント数： <%= @meal_post.meal_comments.count %>
+        <% @meal_post.meal_comments.each do |comment| %>
+          <li>
+            <strong><%= comment.customer.name %></strong>
+            <p><%= comment.comment_content %></p>
+            <% if comment.customer == current_customer %>
+              <%= link_to "削除", meal_post_meal_comment_path(@meal_post, comment), method: :delete, data: { confirm: "このコメントを削除しますか?" }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </li>
+        <% end %>
+
+        <!-- コメント投稿フォーム -->
+        <%= form_with(model: [@meal_post, @meal_post.meal_comments.build], local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :comment_content, "コメントを追加" %>
+            <%= form.text_area :comment_content, class: "form-control" %>
+          </div>
+          <div class="actions">
+            <%= form.submit "コメントを投稿", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

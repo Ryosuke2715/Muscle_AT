@@ -1,0 +1,21 @@
+<div class="container" style="margin-top: 130px; margin-bottom: 30px;">
+  <div class="col-md-10">
+    <%= render 'admin/shared/controll' %>
+    <div class="container">
+      TrainingPost <%= @result %> の検索結果
+      <% @item_training.each do |item| %>
+        <div>
+          会員名: <%= item.customer.name %>
+          タイトル: <%= link_to item.title , admin_training_post_path(item) %>
+        </div>
+      <% end %>
+      MealPost <%= @result %> の検索結果
+      <% @item_meal.each do |item| %>
+        <div>
+          会員名: <%= item.customer.name %>
+          タイトル: <%= link_to item.title , admin_meal_post_path(item) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

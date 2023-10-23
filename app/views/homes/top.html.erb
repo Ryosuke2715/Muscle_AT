@@ -1,2 +1,24 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="text-center" style="margin-top: 100px; margin-bottom: 100px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p id="notice"><%= notice %></p>
+        <h1 class="display-4">Muscle Association Theory</h1>
+        <br>
+        <h2>トレーニング専用コミュニティサイト</h2>
+        <h2>「Muscle Association Theory」</h2>
+        <p>トレーニング記録の投稿に加え、食事内容の投稿機能や体重グラフの表示など、さまざまな機能を提供しています。</p>
+        <br>
+        <br>
+        <p>
+          <%= link_to "ログイン", new_customer_session_path, class: "btn btn-primary btn-lg mr-3" %>
+          <%= link_to "サインイン", new_customer_registration_path, class: "btn btn-success btn-lg" %>
+        </p>
+        <h5 class="mt-5">ゲストログインはこちらから</h5>
+          <div class="col mb-3 mt-3">
+            <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "btn btn-secondary", method: :post %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
