@@ -9,9 +9,26 @@
       <%= render 'public/shared/controll' %>
       <h1><%= @training_post.title %></h1>
       <p>トレーニング日: <%= @training_post.date.strftime("%Y年%m月%d日") %></p>
+      <div style="display: flex;">
+        <div>
+          <% @training_post.training_tags.each do |tag| %>
+            <p><%= tag.training_tag %></p>
+          <% end %>
+        </div>
+
+        <div>
+          <% @training_post.training_menus.each do |menu| %>
+            <p><%= menu.kg %> kg<%= menu.rep %> レップ<%= menu.set %> セット</p>
+          <% end %>
+        </div>
+      </div>
       <p><%= @training_post.content %></p>
     </div>
+    <% if @training_post.customer == current_customer %>
+      <%= link_to "削除", public_training_post_path(@training_post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+    <% end %>
   </div>
+
   <div class="container">
     <div class="row">
       <div class="offset-0 offset-md-3">

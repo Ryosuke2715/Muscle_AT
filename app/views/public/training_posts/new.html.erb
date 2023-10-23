@@ -22,6 +22,14 @@
             <%= form.text_field :title, class: "form-control" %>
           </div>
         </div>
+          <div id='tasks'>
+            <%= form.fields_for :training_menus do |training_menu| %>
+              <%= render 'training_menu_fields', f: training_menu %>
+            <% end %>
+            <div class='links'>
+              <%= link_to_add_association 'add training_menu', form, :training_menus %>
+            </div>
+          </div>
         <div class="form-group">
           <%= form.label :content %>
           <%= form.text_area :content, class: "form-control" %>
