@@ -9,7 +9,5 @@ class CreateFreeEntries < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-
-    add_foreign_key :free_entries, :training_posts, column: :training_post_id
   end
 end
