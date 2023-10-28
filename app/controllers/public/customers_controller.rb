@@ -11,6 +11,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @training_posts = @customer.training_posts
+    @meal_posts = @customer.meal_posts
   end
 
   def edit

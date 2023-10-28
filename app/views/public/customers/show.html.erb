@@ -21,6 +21,18 @@
             <p>トレーニング投稿はありません。</p>
           <% end %>
         </ul>
+        <h2 class="text-center">食事投稿一覧</h2>
+        <ul>
+          <% if @meal_posts.any? %>
+            <% @meal_posts.each do |meal_post| %>
+              <li class="list-group-item">
+                <%= link_to meal_post.title, meal_post_path(meal_post) %>
+              </li>
+            <% end %>
+          <% else %>
+            <p>食事投稿はありません。</p>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
