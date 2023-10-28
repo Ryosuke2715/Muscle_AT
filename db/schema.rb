@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_22_075522) do
+ActiveRecord::Schema.define(version: 2023_10_12_140311) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -106,13 +106,6 @@ ActiveRecord::Schema.define(version: 2023_10_22_075522) do
     t.index ["customer_id"], name: "index_meal_posts_on_customer_id"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "relationships", force: :cascade do |t|
     t.integer "followed_id", null: false
     t.integer "follower_id", null: false
@@ -121,15 +114,6 @@ ActiveRecord::Schema.define(version: 2023_10_22_075522) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "description"
-    t.boolean "done"
-    t.integer "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "training_comments", force: :cascade do |t|
@@ -196,7 +180,6 @@ ActiveRecord::Schema.define(version: 2023_10_22_075522) do
   add_foreign_key "meal_posts", "customers"
   add_foreign_key "relationships", "customers", column: "followed_id"
   add_foreign_key "relationships", "customers", column: "follower_id"
-  add_foreign_key "tasks", "projects"
   add_foreign_key "training_comments", "customers"
   add_foreign_key "training_comments", "training_posts"
   add_foreign_key "training_favs", "customers"
