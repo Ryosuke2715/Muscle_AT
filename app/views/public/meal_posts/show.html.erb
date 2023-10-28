@@ -11,6 +11,10 @@
       <p>食事日: <%= @meal_post.date.strftime("%Y年%m月%d日") %></p>
       <p><%= @meal_post.content %></p>
     </div>
+      <% if @meal_post.customer == current_customer %>
+        <%= link_to "削除", meal_post_path(@meal_post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+      <% end %>
+
   </div>
   <div class="container">
     <div class="row">
