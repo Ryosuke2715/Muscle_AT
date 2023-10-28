@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :projects
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customer,skip: [:passwords] ,controllers: {
@@ -29,19 +28,19 @@ Rails.application.routes.draw do
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
     end
-    
+
     resources :training_posts do
       resource :training_fav, only: [:create, :destroy]
       resources :training_comments, only: [:create, :destroy]
     end
     get "training_fav" => "training_favs#index"
-    
+
     resources :meal_posts do
       resource :meal_fav, only: [:create, :destroy]
       resources :meal_comments, only: [:create, :destroy]
     end
     get "meal_fav" => "meal_favs#index"
-    
+
   end
 
   namespace :public do
