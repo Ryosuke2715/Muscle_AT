@@ -1,0 +1,43 @@
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <!-- SideBar -->
+      <%= render 'public/shared/customer_profile', customer: current_customer %>
+    </div>
+    <div class="col-md-9">
+      <!-- Control links -->
+      <%= render 'public/shared/controll' %>
+      <h2>トレーニング投稿</h2>
+    <div class="section1 text-right">
+      <%= link_to "食事投稿へ移動", new_meal_post_path, class: "btn btn-primary btn-sm" %>
+    </div>
+      <%= form_with(model: @training_post, local: true) do |form| %>
+        <div class="form-group row">
+          <div class="col-md-3">
+            <%= form.label :date %>
+            <%= form.date_field :date, class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control" %>
+          </div>
+        </div>
+          <div id='tasks'>
+            <%= form.fields_for :training_menus do |training_menu| %>
+              <%= render 'training_menu_fields', f: training_menu %>
+            <% end %>
+            <div class='links'>
+              <%= link_to_add_association 'add training_menu', form, :training_menus %>
+            </div>
+          </div>
+        <div class="form-group">
+          <%= form.label :content %>
+          <%= form.text_area :content, class: "form-control" %>
+        </div>
+        <div class="actions">
+          <%= form.submit "投稿", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

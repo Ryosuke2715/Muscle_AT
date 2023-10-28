@@ -1,0 +1,20 @@
+<div class="container" style="margin-top: 130px; margin-bottom: 30px;">
+  <%= render 'admin/shared/controll' %>
+  <p><strong>Title:</strong> <%= @training_post.title %></p>
+  <p><strong>Date:</strong> <%= @training_post.date.strftime("%Y-%m-%d") %></p>
+  <p><strong>Content:</strong></p>
+  <p><%= @training_post.content %></p>
+
+  <%= link_to 'Back', admin_training_posts_path %> <!-- 一覧ページへのリンク -->
+  <%= link_to 'Delete', admin_training_post_path(@training_post), method: :delete, data: { confirm: 'Are you sure?' } %> <!-- 削除リンク -->
+
+  <h2>Comments</h2>
+  コメント数：<%= @training_post.training_comments.count %>
+  <% @training_post.training_comments.each do |tc| %>
+    <div>
+      <%= tc.customer.name %>
+      <%= tc.comment_content %>
+      <%= link_to "Delete", admin_training_post_training_comment_path(@training_post, tc), method: :delete %>
+    </div>
+  <% end %>
+</div>

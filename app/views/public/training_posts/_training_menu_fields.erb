@@ -1,0 +1,25 @@
+<div class='nested-fields'>
+  <div class="form-inline">
+    <div class='form_group field'>
+        <%= f.collection_select(:training_tag_id, @training_tags,:id, :training_tag) %>
+    </div>
+     <!-- 重量（kg）入力フォーム -->
+    <div class="form-group">
+      <%= f.text_field :kg, class:"form-control-sm" %>
+      <label for="kg">kg</label>
+    </div>
+
+    <!-- レップ入力フォーム -->
+    <div class="form-group">
+      <%= f.text_field :rep, class:"form-control-sm" %>
+      <label for="reps">ﾚｯﾌﾟ</label>
+    </div>
+
+    <!-- セット数入力フォーム -->
+    <div class="form-group">
+      <%= f.text_field :set, class:"form-control-sm" %>
+      <label for="set">ｾｯﾄ</label>
+    </div>
+  </div>
+  <%= link_to_remove_association "remove training_menu", f %>
+</div>
